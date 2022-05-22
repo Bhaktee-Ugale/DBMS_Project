@@ -1,0 +1,3 @@
+holds 2 classes
+Applicant_registration.html - accepts applicant info and sends it to Registar.jsp page
+Registar.jsp - used to for storing data in database
