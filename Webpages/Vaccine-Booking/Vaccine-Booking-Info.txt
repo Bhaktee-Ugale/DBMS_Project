@@ -1,0 +1,3 @@
+holds 2 classes
+Booking.jsp - to book vaccine at center
+BookingVaccine.html - using pincode and city user has entered page shows nearby vaccine centers
