@@ -14,8 +14,24 @@
 </head>
 <body>
 <%
+/*out.println(obj.getName());
+out.println(obj.getAdhno());
+out.println(obj.getCity());
+out.println(obj.getPncd());
+out.println(obj.getGender());
+out.println(obj.getPregnancy());
+out.println(obj.getDiabetes());
+out.println(obj.getDob());
+out.println(obj.getMobno());
+out.println(obj.getState());
+out.println(obj.getOther());
+out.println(obj.getPwd());
+out.println(obj.getEmailId());*/
+
+
 boolean status=VaccineRegistration.register(obj);
 if(status) out.println("You have successfully registered!");
+else out.println("Unsuccessful Registration!");
 %>
 
 <button name="button" type="button" onclick="booking_page()">Booking for Vaccine</button>
