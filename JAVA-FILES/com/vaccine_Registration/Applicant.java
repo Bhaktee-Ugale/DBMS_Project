@@ -4,23 +4,6 @@ public class Applicant {
 	private String adhno;
 	private String name, city, state, mobno, emailId,pwd;
 	private String pregnancy, diabetes, other, gender, pncd, dob; // other = other illnesses
-	
-	Applicant(String adh_no, String nme, String date, String gen, String ct,String st, String pin, String mob, String email, String preg, String dia, String oth, String pass){
-		adhno = adh_no;
-		name = nme;
-		dob = date;
-		gender = gen;
-		city = ct;
-		state = st;
-		pncd = pin;
-		mobno = mob;
-		emailId = email;
-		pregnancy = preg;
-		diabetes = dia;
-		other = oth;
-		pwd=pass;
-	}
-	
 	public String getAdhno() {  
 	    return adhno;  
 	}  
@@ -69,35 +52,35 @@ public class Applicant {
 	    this.state = state;  
 	}
 	
-	public String getPin() {  
+	public String getPncd() {  
 	    return pncd;  
 	}  
 	  
-	public void setPin(String pncd) {  
+	public void setPncd(String pncd) {  
 	    this.pncd = pncd;  
 	}
 	
-	public String getMob() {  
+	public String getMobno() {  
 	    return mobno;  
 	}  
 	  
-	public void setMob(String mob) {  
+	public void setMobno(String mob) {  
 	    this.mobno = mob;  
 	}
 	
-	public String getPreg() {  
+	public String getPregnancy() {  
 	    return pregnancy;  
 	}  
 	  
-	public void setPreg(String preg) {  
+	public void setPregnancy(String preg) {  
 	    this.pregnancy = preg;  
 	}
 	
-	public String getDia() {  
+	public String getDiabetes() {  
 	    return diabetes;  
 	}  
 	  
-	public void setDia(String dia) {  
+	public void setDiabetes(String dia) {  
 	    this.diabetes = dia;  
 	}
 	
@@ -109,11 +92,11 @@ public class Applicant {
 	    this.other = oth;  
 	}
 	
-	public String getEmail() {  
+	public String getEmailId() {  
 	    return emailId;  
 	}  
 	  
-	public void setEmail(String email) {  
+	public void setEmailId(String email) {  
 	    this.emailId = email;  
 	}
 	
