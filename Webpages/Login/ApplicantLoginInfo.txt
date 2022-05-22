@@ -1,0 +1,3 @@
+3 web pages
+applicant_login.html - html page to accpet username and password
+login.jsp - jsp page to validate user
