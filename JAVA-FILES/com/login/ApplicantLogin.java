@@ -3,10 +3,10 @@ package com.login;
 public class ApplicantLogin {
 	private String adhno, pwd;
 	
-	ApplicantLogin(String adhno, String pwd){
+	/*ApplicantLogin(String adhno, String pwd){
 		this.adhno=adhno;
 		this.pwd=pwd;
-	}
+	}*/
 	
 	public String getAdhno() {  
 	    return adhno;  
