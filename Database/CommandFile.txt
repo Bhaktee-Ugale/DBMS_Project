@@ -1,0 +1,121 @@
+mysql> create database Vaccination_Drive;                                          
+ Query OK, 1 row affected (0.05 sec)   
+mysql> use Vaccination_Drive;                                                       
+Database changed                                                                    
+mysql> create table Personal_Det(                                                       
+    -> Aadhar_No Varchar(15) Primary Key,                                               
+    -> Name Varchar(50),                                                                
+    -> DOB Date,                                                                      
+    -> Gender Varchar(20),                                                             
+    -> City Varchar(30),                                                               
+    -> State Varchar(30),                                                               
+    -> Pincode int,                                                                    
+    -> MobNo varchar(10),                                                               
+    -> emailId varchar(50),                                                            
+    -> Pregnancy varchar(5),                                                            
+    -> Diabetes varchar(5),                                                             
+    -> Other_Ill varchar(50),                                                           
+    -> Bene_No_of_Vacc BIGINT);                                                     
+Query OK, 0 rows affected (0.07 sec)                                                                                      
+
+mysql> create table Centres(                                                           
+    -> C_code bigint Primary Key AUTO_INCREMENT,                                        
+    -> C_Name varchar(50),                                                              
+    -> C_city varchar(30),                                                              
+    -> C_state varchar(30),                                                           
+    -> C_pincode int,                                                                  
+    -> TS1 varchar(15),                                                                
+    -> TS2 varchar(15),                                                                 
+    -> Capacity int,                                                                    
+    -> cv_amt int,                                                                      
+    -> cs_amt int);                                                                 
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER TABLE Centres AUTO_INCREMENT = 100000;                                
+Query OK, 0 rows affected (0.06 sec)                                                
+Records: 0  Duplicates: 0  Warnings: 0                                                                                        
+
+mysql> create table Emp_det(
+    -> empId bigint Primary Key,
+    -> C_code bigint,
+    -> e_name varchar(50),
+    -> DOB Date,
+    -> qualif varchar(30),
+    -> eGender varchar(20),
+    -> FOREIGN KEY (C_code) REFERENCES Centres(C_code));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table vacc_ids(
+    -> vaccId int Primary Key,
+    -> Vacc_Name varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table det_of_vacc(
+    -> Bene_no bigint Primary Key,
+    -> vacc_Name varchar(20),
+    -> status varchar(20),
+    -> v_time time,
+    -> Vacc_by bigint,
+    -> ts varchar(15),
+    -> v_date Date,
+    -> FOREIGN KEY (Vacc_by) REFERENCES Emp_det(empId));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> ALTER TABLE Personal_det
+    -> ADD FOREIGN KEY (Bene_No_of_Vacc) REFERENCES det_of_vacc(Bene_no);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table det_of_vacc add adhno varchar(15);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table det_of_vacc add FOREIGN KEY (adhno) REFERENCES Personal_Det(Aadhar_No);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Personal_Det add pwd varchar(30);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Personal_Det add UNIQUE(pwd);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table centres add column cv_consump int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table centres add column cs_consump int;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table consump_rec(c_date date, cv_consump int, cs_consump int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe consump_rec;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| c_date     | date | YES  |     | NULL    |       |
+| cv_consump | int  | YES  |     | NULL    |       |
+| cs_consump | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+Function which determines whether applicant has booked vaccine or not
+mysql> create function isBooked(adhno varchar(15))
+    -> returns int
+    -> begin
+    -> declare is_b int default 0;
+    -> declare bno int default -1;
+    -> set bno=(select bno from personal_det where Aadhar_No=adhno);
+    -> if bno!=-1 then
+    -> set is_b=1;
+    -> end if;
+    -> return is_b;
+    -> end//
+Query OK, 0 rows affected (0.01 sec)
+
+
+
